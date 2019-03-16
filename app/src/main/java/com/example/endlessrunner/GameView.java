@@ -3,22 +3,35 @@ package com.example.endlessrunner;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
+    private GameModel _gameModel;
     private GameThread _mainThread;
 
     private SceneManager _sceneManager;
 
+    private ModifyGestureDetector _gestureDetector;
+
+    View.OnTouchListener _touchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return _gestureDetector.onTouchEvent(event);
+        }
+    };
+
+
     public GameView(Context context) {
         super(context);
-
-        Settings.CURRENT_CONTEXT=context;
-
-        _sceneManager=new SceneManager();
+        Settings.CURRENT_CONTEXT = context;
+        setOnTouchListener(_touchListener);
+        _sceneManager = new SceneManager();
+        _gestureDetector=_sceneManager.getSceneGestureDetector();
         getHolder().addCallback(this);
         _mainThread = new GameThread(getHolder(), this);
         setFocusable(true);
@@ -26,7 +39,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Settings.INIT_TIME=System.currentTimeMillis();
+        Settings.INIT_TIME = System.currentTimeMillis();
         _mainThread.setRunning(true);
         _mainThread.start();
     }

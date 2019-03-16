@@ -37,7 +37,9 @@ class GameGestureDetector extends GestureDetector.SimpleOnGestureListener implem
 
     @Override
     public void onLongPress(MotionEvent e) {
-
+        if(_gameModel.isGameOver()){
+            _gameModel.reset();
+        }
     }
 
     @Override
