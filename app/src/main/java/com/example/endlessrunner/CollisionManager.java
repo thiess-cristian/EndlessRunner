@@ -1,9 +1,7 @@
 package com.example.endlessrunner;
 
-import android.graphics.Color;
-
 import java.util.ArrayList;
-import java.util.Set;
+
 
 public class CollisionManager {
 
@@ -18,7 +16,6 @@ public class CollisionManager {
 
                 if(platform.isPlayerOnTop(player)){
                     player.setGroundLevel(Settings.SCREEN_HEIGHT-platform.getBoundingRect().top);
-                    platform.setColor(Color.BLUE);
                     checkForPlatforms=false;
                 }
             }

@@ -26,6 +26,7 @@ public class SceneManager {
     }
 
     public void update(){
+
         _sceneList.get(ACTIVE_SCENE).update();
     }
 

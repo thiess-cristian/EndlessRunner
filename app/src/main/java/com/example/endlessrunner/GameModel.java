@@ -13,6 +13,7 @@ public class GameModel implements GameObject {
     private Player _player;
     private ArrayList<Enemy> _enemies;
     private ArrayList<MovingObject> _movingObjects;
+    private ArrayList<Background> _backgrounds;
     private long _initTime;
     private long _platformInitTime;
     private CollisionManager _collisionManager;
@@ -36,10 +37,18 @@ public class GameModel implements GameObject {
         _heartDisplay=new HeartDisplay();
         _gameOverDisplay=new GameOverDisplay();
         _gameOver=false;
+        _backgrounds=new ArrayList<>();
+        addInitialBackground();
+        addBackGround();
     }
 
     @Override
     public void draw(Canvas canvas) {
+
+        for(Background background:_backgrounds){
+            background.draw(canvas);
+        }
+
         for (Enemy enemy : _enemies) {
             enemy.draw(canvas);
         }
@@ -53,6 +62,8 @@ public class GameModel implements GameObject {
         if(_gameOver){
             _gameOverDisplay.draw(canvas);
         }
+
+
     }
 
     @Override
@@ -77,9 +88,10 @@ public class GameModel implements GameObject {
                 addPlatform();
             }
 
-            addCoin();
             if (random.nextBoolean()) {
                 addHeart();
+            }else{
+                addCoin();
             }
         }
 
@@ -97,6 +109,11 @@ public class GameModel implements GameObject {
             if (_movingObjects.get(0).getBoundingRect().right < 0) {
                 _movingObjects.remove(0);
             }
+        }
+
+        if(_backgrounds.get(0).getBoundingRect().right<0){
+            _backgrounds.remove(0);
+            addBackGround();
         }
 
         for (MovingObject movingObject : _movingObjects) {
@@ -191,5 +208,25 @@ public class GameModel implements GameObject {
         _heartDisplay=new HeartDisplay();
         _gameOverDisplay=new GameOverDisplay();
         _gameOver=false;
+        _backgrounds=new ArrayList<>();
+        addInitialBackground();
+        addBackGround();
+    }
+
+    public void addBackGround(){
+        int top = 0;
+        int bottom = Settings.SCREEN_HEIGHT;
+        int left = Settings.SCREEN_WIDTH;
+        int right = left+Settings.SCREEN_WIDTH;
+        Rect boundingRect=new Rect(left, top, right, bottom);
+        _backgrounds.add(new Background(boundingRect,-5,0));
+    }
+    public void addInitialBackground(){
+        int top = 0;
+        int bottom = Settings.SCREEN_HEIGHT;
+        int left = 0;
+        int right = Settings.SCREEN_WIDTH;
+        Rect boundingRect=new Rect(left, top, right, bottom);
+        _backgrounds.add(new Background(boundingRect,-5,0));
     }
 }
