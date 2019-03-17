@@ -26,16 +26,16 @@ public class HeartDisplay {
         //paint.setTextSize(50);
         //canvas.drawText(""+_heartCount,Settings.SCREEN_WIDTH-100,50,paint);
 
-        int left=Settings.SCREEN_WIDTH-200;
+        int left=Settings.SCREEN_WIDTH-500;
         int top=20;
-        int right=left+50;
-        int bottom=top+50;
+        int right=left+100;
+        int bottom=top+100;
 
         Rect rect=new Rect(left,top,right,bottom);
 
         for(int i=0;i<=_heartCount;i++){
             canvas.drawBitmap(_sprite, null, rect, new Paint());
-            rect.offset(50,0);
+            rect.offset(100,0);
         }
     }
 

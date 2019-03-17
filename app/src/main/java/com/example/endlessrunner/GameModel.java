@@ -19,7 +19,7 @@ public class GameModel implements GameObject {
     private CollisionManager _collisionManager;
     private ScoreDisplay _scoreDisplay;
     private HeartDisplay _heartDisplay;
-    private GameOverDisplay _gameOverDisplay;
+
     private boolean _gameOver=true;
 
     public GameModel() {
@@ -35,7 +35,6 @@ public class GameModel implements GameObject {
         _collisionManager = new CollisionManager();
         _scoreDisplay=new ScoreDisplay();
         _heartDisplay=new HeartDisplay();
-        _gameOverDisplay=new GameOverDisplay();
         _gameOver=false;
         _backgrounds=new ArrayList<>();
         addInitialBackground();
@@ -58,12 +57,6 @@ public class GameModel implements GameObject {
         _player.draw(canvas);
         _scoreDisplay.draw(canvas);
         _heartDisplay.draw(canvas);
-
-        if(_gameOver){
-            _gameOverDisplay.draw(canvas);
-        }
-
-
     }
 
     @Override
@@ -125,6 +118,7 @@ public class GameModel implements GameObject {
         _player.update();
         _scoreDisplay.setScore(_player.getScore());
         _heartDisplay.setHeartCount(_player.getLifePoints());
+
 
         if(!_player.isAlive()){
             _gameOver=true;
@@ -206,7 +200,6 @@ public class GameModel implements GameObject {
         _collisionManager = new CollisionManager();
         _scoreDisplay=new ScoreDisplay();
         _heartDisplay=new HeartDisplay();
-        _gameOverDisplay=new GameOverDisplay();
         _gameOver=false;
         _backgrounds=new ArrayList<>();
         addInitialBackground();

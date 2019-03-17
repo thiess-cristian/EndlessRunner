@@ -8,9 +8,12 @@ public class GameplayScene implements Scene {
     private GameModel _gameModel;
     private ModifyGestureDetector _gestureDetector;
 
+    private GameOverDisplay _gameOverDisplay;
+
     public GameplayScene() {
         _gameModel = new GameModel();
         _gestureDetector = new ModifyGestureDetector(Settings.CURRENT_CONTEXT, new GameGestureDetector(_gameModel));
+        _gameOverDisplay=new GameOverDisplay();
     }
 
 
@@ -23,6 +26,9 @@ public class GameplayScene implements Scene {
     public void draw(Canvas canvas) {
         if (canvas != null) {
             _gameModel.draw(canvas);
+            if(_gameModel.isGameOver()){
+                _gameOverDisplay.draw(canvas);
+            }
         }
     }
 
@@ -30,6 +36,8 @@ public class GameplayScene implements Scene {
     public void update() {
         if (!_gameModel.isGameOver()) {
             _gameModel.update();
+        }else{
+            _gameOverDisplay.update();
         }
     }
 
