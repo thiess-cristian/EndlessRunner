@@ -20,14 +20,12 @@ public class GameModel implements GameObject {
     private ScoreDisplay _scoreDisplay;
     private HeartDisplay _heartDisplay;
 
+    private SpriteCollection _spriteCollection;
+
     private boolean _gameOver=true;
 
     public GameModel() {
-        int playerX = 200;
-        int playerY = Settings.SCREEN_HEIGHT - 200;
-        Paint paint = new Paint();
-        paint.setColor(Color.GREEN);
-        _player = new Player(new Rect(playerX, playerY, playerX + 100, playerY + 100), paint);
+
         _enemies = new ArrayList<>();
         _movingObjects = new ArrayList<>();
         _initTime = System.currentTimeMillis();
@@ -37,8 +35,12 @@ public class GameModel implements GameObject {
         _heartDisplay=new HeartDisplay();
         _gameOver=false;
         _backgrounds=new ArrayList<>();
+        _spriteCollection=new SpriteCollection();
+
+        addPlayer();
         addInitialBackground();
         addBackGround();
+
     }
 
     @Override
@@ -77,8 +79,8 @@ public class GameModel implements GameObject {
 
         if (currentTime - _platformInitTime > 10000) {
             _platformInitTime = _initTime;
+            addPlatform();
             if (random.nextBoolean()) {
-                addPlatform();
             }
 
             if (random.nextBoolean()) {
@@ -104,14 +106,22 @@ public class GameModel implements GameObject {
             }
         }
 
-        if(_backgrounds.get(0).getBoundingRect().right<0){
-            _backgrounds.remove(0);
-            addBackGround();
-        }
-
         for (MovingObject movingObject : _movingObjects) {
             movingObject.update();
         }
+
+        if(_backgrounds.get(0).getBoundingRect().right<=0){
+            //_backgrounds.remove(0);
+            //_backgrounds.get(0).reset();
+            //addBackGround();
+        }
+        for(Background background:_backgrounds){
+            background.update();
+            if(background.getBoundingRect().right<=0){
+                background.reset();
+            }
+        }
+
 
         _collisionManager.checkPlayerObjectsCollision(_player, _movingObjects);
         _collisionManager.checkPlayerEnemyCollision(_player,_enemies);
@@ -156,15 +166,15 @@ public class GameModel implements GameObject {
         Rect boundingRect = new Rect(left, top, right, bottom);
         Paint paint = new Paint();
         paint.setColor(Color.YELLOW);
-        _enemies.add(new Bird(boundingRect, -5, 0, paint));
+        _enemies.add(new Bird(boundingRect, -10, 0, paint));
     }
 
     private void addPlatform() {
         Random random = new Random();
-        int top = Settings.SCREEN_HEIGHT - random.nextInt(200) - 200;
-        int bottom = top + 100;
+        int top = Settings.SCREEN_HEIGHT - random.nextInt(150) - 200;
+        int bottom = top + 200;
         int left = Settings.SCREEN_WIDTH;
-        int right = left + 500;
+        int right = left + 1000;
         Rect boundingRect = new Rect(left, top, right, bottom);
         _movingObjects.add(new Platform(boundingRect, -5, 0));
     }
@@ -188,11 +198,7 @@ public class GameModel implements GameObject {
     }
 
     public void reset() {
-        int playerX = 200;
-        int playerY = Settings.SCREEN_HEIGHT - 200;
-        Paint paint = new Paint();
-        paint.setColor(Color.GREEN);
-        _player = new Player(new Rect(playerX, playerY, playerX + 100, playerY + 100), paint);
+        addPlayer();
         _enemies = new ArrayList<>();
         _movingObjects = new ArrayList<>();
         _initTime = System.currentTimeMillis();
@@ -221,5 +227,19 @@ public class GameModel implements GameObject {
         int right = Settings.SCREEN_WIDTH;
         Rect boundingRect=new Rect(left, top, right, bottom);
         _backgrounds.add(new Background(boundingRect,-5,0));
+    }
+    public  void addPlayer(){
+        int playerX = 200;
+        int playerY = Settings.SCREEN_HEIGHT - 200;
+        Paint paint = new Paint();
+        paint.setColor(Color.GREEN);
+
+        int top = Settings.SCREEN_HEIGHT -500;
+        int bottom = top + 256;
+        int left = 200;
+        int right = left + 256;
+        Rect boundingRect=new Rect(left, top, right, bottom);
+
+        _player = new Player(boundingRect, paint);
     }
 }

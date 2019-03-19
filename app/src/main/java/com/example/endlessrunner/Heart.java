@@ -29,7 +29,7 @@ public class Heart extends MovingObject {
     }
 
     public boolean isColliding(Player player){
-        return Rect.intersects(player.getBoundingRect(),_boundingRect);
+        return Rect.intersects(player.getHitBox(),_boundingRect);
     }
 
     public void setIsTaken(boolean isTaken){

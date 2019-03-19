@@ -24,7 +24,7 @@ public class Enemy extends MovingObject {
     }
 
     boolean isColliding(Player player){
-        return Rect.intersects(player.getBoundingRect(),_boundingRect);
+        return Rect.intersects(player.getHitBox(),_boundingRect);
     }
 
     @Override
