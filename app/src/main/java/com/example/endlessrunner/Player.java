@@ -37,23 +37,8 @@ public class Player extends MovingObject {
         _hitBox.left=_boundingRect.left+64;
         _hitBox.right=_boundingRect.right-64;
 
-        Bitmap player0 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player00);
-        Bitmap player1 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player01);
-        Bitmap player2 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player02);
-        Bitmap player3 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player03);
-        Bitmap player4 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player04);
-        Bitmap player5 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player05);
-        Bitmap player6 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player06);
-        Bitmap player7 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player07);
-        Bitmap player8 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player08);
-        Bitmap player9 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player09);
-        Bitmap player10 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player10);
-        Bitmap player11 = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_player11);
-
-        _animation = new Animation(new Bitmap[]{player0,player1,player2,player3,player4,player5,player6,player7,player8,player9,player10,player11}, 0.8f);
+        _animation = new Animation(SpriteCollection.getPlayerSprites(), 0.8f);
         _animationManager=new AnimationManager(new Animation[]{_animation});
-
-
     }
 
     public Rect getHitBox(){

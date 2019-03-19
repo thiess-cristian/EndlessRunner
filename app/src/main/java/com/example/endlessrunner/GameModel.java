@@ -25,6 +25,7 @@ public class GameModel implements GameObject {
     private boolean _gameOver=true;
 
     public GameModel() {
+        _spriteCollection=new SpriteCollection();
 
         _enemies = new ArrayList<>();
         _movingObjects = new ArrayList<>();
@@ -35,7 +36,6 @@ public class GameModel implements GameObject {
         _heartDisplay=new HeartDisplay();
         _gameOver=false;
         _backgrounds=new ArrayList<>();
-        _spriteCollection=new SpriteCollection();
 
         addPlayer();
         addInitialBackground();

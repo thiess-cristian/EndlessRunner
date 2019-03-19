@@ -20,11 +20,7 @@ public class Heart extends MovingObject {
         _paint=new Paint();
         _paint.setColor(Color.MAGENTA);
         _isTaken=false;
-
-        Bitmap off = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_heart0);
-        Bitmap on = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_heart1);
-
-        _animation = new Animation(new Bitmap[]{on,off}, 1);
+        _animation = new Animation(SpriteCollection.getHeartSprites(), 1);
         _animationManager=new AnimationManager(new Animation[]{_animation});
     }
 

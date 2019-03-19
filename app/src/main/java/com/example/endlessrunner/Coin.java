@@ -20,10 +20,7 @@ public class Coin extends MovingObject {
         _paint=new Paint();
         _paint.setColor(Color.CYAN);
 
-        Bitmap off = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_coin0);
-        Bitmap on = BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_coin1);
-
-        _animation = new Animation(new Bitmap[]{on,off}, 1);
+        _animation = new Animation(SpriteCollection.getCoinSprites(), 1);
         _animationManager=new AnimationManager(new Animation[]{_animation});
     }
 

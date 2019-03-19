@@ -58,7 +58,9 @@ class GameThread extends Thread {
             waitTime = targetTime - timeMillis;
 
             try {
-                sleep(waitTime);
+                if(waitTime>0){
+                    sleep(waitTime);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

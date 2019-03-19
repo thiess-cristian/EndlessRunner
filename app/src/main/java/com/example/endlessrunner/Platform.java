@@ -23,11 +23,7 @@ public class Platform extends MovingObject {
         Random random=new Random();
         int randomSpriteIndex=random.nextInt(3);
 
-        ArrayList<Bitmap> bitmaps=new ArrayList<>();
-        bitmaps.add(0,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_platform0));
-        bitmaps.add(1,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_platform1));
-        bitmaps.add(2,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_platform2));
-        _sprite=bitmaps.get(randomSpriteIndex);
+        _sprite=SpriteCollection.getPlatformSprites()[randomSpriteIndex];
     }
 
     public void setColor(int color) {

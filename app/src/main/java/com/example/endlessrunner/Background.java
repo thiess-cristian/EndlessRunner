@@ -25,7 +25,7 @@ public class Background extends MovingObject {
         Random random=new Random();
         int randomSpriteIndex=random.nextInt(2);
 
-        _sprite=SpriteCollection.getBackgroundSprites().get(randomSpriteIndex);
+        _sprite=SpriteCollection.getBackgroundSprites()[randomSpriteIndex];
     }
 
     @Override
@@ -52,7 +52,6 @@ public class Background extends MovingObject {
         Random random=new Random();
         int randomSpriteIndex=random.nextInt(2);
 
-       // SpriteCollection spriteCollection=new SpriteCollection();
-        _sprite=SpriteCollection.getBackgroundSprites().get(randomSpriteIndex);
+        _sprite=SpriteCollection.getBackgroundSprites()[randomSpriteIndex];
     }
 }

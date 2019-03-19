@@ -13,20 +13,10 @@ import java.util.LinkedList;
 public class ScoreDisplay {
 
     private int _score;
-    private ArrayList<Bitmap> _numbers;
+    private Bitmap[] _numbers;
 
     public ScoreDisplay(){
-        _numbers=new ArrayList<>();
-        _numbers.add(0,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number00));
-        _numbers.add(1,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number01));
-        _numbers.add(2,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number02));
-        _numbers.add(3,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number03));
-        _numbers.add(4,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number04));
-        _numbers.add(5,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number05));
-        _numbers.add(6,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number06));
-        _numbers.add(7,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number07));
-        _numbers.add(8,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number08));
-        _numbers.add(9,BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_number09));
+        _numbers=SpriteCollection.getNumberSprites();
     }
 
     public void setScore(int score){
@@ -56,7 +46,7 @@ public class ScoreDisplay {
         Rect rect=new Rect(left,top,right,bottom);
 
         while (!stack.isEmpty()) {
-            canvas.drawBitmap(_numbers.get(stack.pop()), null, rect, new Paint());
+            canvas.drawBitmap(_numbers[stack.pop()], null, rect, new Paint());
             rect.offset(100,0);
         }
 
