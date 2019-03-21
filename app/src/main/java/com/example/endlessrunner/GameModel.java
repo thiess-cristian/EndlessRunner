@@ -16,6 +16,7 @@ public class GameModel implements GameObject {
     private ArrayList<Background> _backgrounds;
     private long _initTime;
     private long _platformInitTime;
+    private long _birdInitTime;
     private CollisionManager _collisionManager;
     private ScoreDisplay _scoreDisplay;
     private HeartDisplay _heartDisplay;
@@ -31,6 +32,7 @@ public class GameModel implements GameObject {
         _movingObjects = new ArrayList<>();
         _initTime = System.currentTimeMillis();
         _platformInitTime = _initTime;
+        _birdInitTime=_initTime;
         _collisionManager = new CollisionManager();
         _scoreDisplay=new ScoreDisplay();
         _heartDisplay=new HeartDisplay();
@@ -72,15 +74,20 @@ public class GameModel implements GameObject {
             if (random.nextBoolean()) {
                 addEnemy();
             }
+
+        }
+
+        if(currentTime-_birdInitTime >3500){
             if (random.nextBoolean()) {
                 addBird();
             }
+            _birdInitTime=currentTime;
         }
 
         if (currentTime - _platformInitTime > 10000) {
             _platformInitTime = _initTime;
-            addPlatform();
             if (random.nextBoolean()) {
+                addPlatform();
             }
 
             if (random.nextBoolean()) {
@@ -146,10 +153,10 @@ public class GameModel implements GameObject {
     private void addEnemy() {
         Random random = new Random();
         int yOffset = random.nextInt(200);
-        int top = Settings.SCREEN_HEIGHT - yOffset-100;
-        int bottom = top + 100;
+        int top = Settings.SCREEN_HEIGHT - yOffset-200;
+        int bottom = top + 256;
         int left = Settings.SCREEN_WIDTH;
-        int right = left + 100;
+        int right = left + 256;
         Rect boundingRect = new Rect(left, top, right, bottom);
         Paint paint = new Paint();
         paint.setColor(Color.RED);
@@ -158,15 +165,15 @@ public class GameModel implements GameObject {
 
     private void addBird() {
         Random random = new Random();
-        int yOffset = random.nextInt(400) + 600;
+        int yOffset = random.nextInt(400) + 750;
         int top = Settings.SCREEN_HEIGHT - yOffset;
-        int bottom = top + 100;
+        int bottom = top + 256;
         int left = Settings.SCREEN_WIDTH;
-        int right = left + 100;
+        int right = left + 256;
         Rect boundingRect = new Rect(left, top, right, bottom);
         Paint paint = new Paint();
         paint.setColor(Color.YELLOW);
-        _enemies.add(new Bird(boundingRect, -10, 0, paint));
+        _enemies.add(new Bird(boundingRect, -12, 0, paint));
     }
 
     private void addPlatform() {
@@ -229,8 +236,6 @@ public class GameModel implements GameObject {
         _backgrounds.add(new Background(boundingRect,-5,0));
     }
     public  void addPlayer(){
-        int playerX = 200;
-        int playerY = Settings.SCREEN_HEIGHT - 200;
         Paint paint = new Paint();
         paint.setColor(Color.GREEN);
 

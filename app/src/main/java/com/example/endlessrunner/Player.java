@@ -88,7 +88,7 @@ public class Player extends MovingObject {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawRect(_hitBox, _paint);
+        //canvas.drawRect(_hitBox, _paint);
         _animationManager.draw(canvas,_boundingRect);
     }
 

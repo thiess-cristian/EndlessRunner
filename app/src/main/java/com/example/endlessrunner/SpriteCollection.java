@@ -104,11 +104,23 @@ public class SpriteCollection {
     }
 
     private void initEnemySprites(){
-        _enemySprites=new Bitmap[1];
+        _enemySprites=new Bitmap[8];
+        _enemySprites[0]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_enemy0);
+        _enemySprites[1]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_enemy1);
+        _enemySprites[2]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_enemy2);
+        _enemySprites[3]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_enemy3);
+        _enemySprites[4]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_enemy4);
+        _enemySprites[5]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_enemy5);
+        _enemySprites[6]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_enemy6);
+        _enemySprites[7]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_enemy7);
     }
 
     private void initBirdSprites(){
-        _birdSprites=new Bitmap[1];
+        _birdSprites=new Bitmap[4];
+        _birdSprites[0]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_bird0);
+        _birdSprites[1]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_bird1);
+        _birdSprites[2]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_bird2);
+        _birdSprites[3]=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_bird3);
     }
 
     private void initHeartSprites(){
