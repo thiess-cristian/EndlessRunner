@@ -23,7 +23,9 @@ public class Background extends MovingObject {
         _paint.setColor(Color.WHITE);
 
         Random random=new Random();
-        int randomSpriteIndex=random.nextInt(2);
+        int randomSpriteIndex=random.nextInt(5);
+
+
 
         _sprite=SpriteCollection.getBackgroundSprites()[randomSpriteIndex];
     }
@@ -50,7 +52,7 @@ public class Background extends MovingObject {
         _boundingRect.right=right;
 
         Random random=new Random();
-        int randomSpriteIndex=random.nextInt(2);
+        int randomSpriteIndex=random.nextInt(5);
 
         _sprite=SpriteCollection.getBackgroundSprites()[randomSpriteIndex];
     }

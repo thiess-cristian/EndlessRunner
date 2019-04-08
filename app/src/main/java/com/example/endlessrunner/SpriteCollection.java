@@ -59,16 +59,25 @@ public class SpriteCollection {
     }
 
     private void initBackgroundSprites(){
-        _backgroundSprites=new Bitmap[2];
+        _backgroundSprites=new Bitmap[5];
 
         Bitmap sprite0=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_background0);
         Bitmap sprite1=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_background1);
+        Bitmap sprite2=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_background2);
+        Bitmap sprite3=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_background3);
+        Bitmap sprite4=BitmapFactory.decodeResource(Settings.CURRENT_CONTEXT.getResources(), R.drawable.sprite_background4);
 
         sprite0=Bitmap.createScaledBitmap(sprite0, Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT, false);
         sprite1=Bitmap.createScaledBitmap(sprite1, Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT, false);
+        sprite2=Bitmap.createScaledBitmap(sprite2, Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT, false);
+        sprite3=Bitmap.createScaledBitmap(sprite3, Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT, false);
+        sprite4=Bitmap.createScaledBitmap(sprite4, Settings.SCREEN_WIDTH, Settings.SCREEN_HEIGHT, false);
 
         _backgroundSprites[0]=sprite0;
         _backgroundSprites[1]=sprite1;
+        _backgroundSprites[2]=sprite2;
+        _backgroundSprites[3]=sprite3;
+        _backgroundSprites[4]=sprite4;
     }
 
     private void initPlayerSprites(){
