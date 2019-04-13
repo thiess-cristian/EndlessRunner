@@ -27,6 +27,7 @@ public class GameplayScene implements Scene {
         if (canvas != null) {
             _gameModel.draw(canvas);
             if(_gameModel.isGameOver()){
+
                 _gameOverDisplay.draw(canvas);
             }
         }
@@ -38,6 +39,7 @@ public class GameplayScene implements Scene {
             _gameModel.update();
         }else{
             _gameOverDisplay.update();
+            _gameModel.updateHUD();
         }
     }
 

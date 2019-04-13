@@ -1,7 +1,6 @@
 package com.example.endlessrunner;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -16,7 +15,10 @@ public class Player extends MovingObject {
     private int _lifePoints;
     private boolean _isAlive;
     private int _score;
-    private Animation _animation;
+    private int _state;
+    private Animation _runningAnimation;
+    private Animation _jumpingAnimation;
+    private Animation _fallingAnimation;
     private AnimationManager _animationManager;
     private Rect _hitBox;
 
@@ -30,6 +32,7 @@ public class Player extends MovingObject {
         _groundLevel = 100;
         _lifePoints = 3;
         _isAlive = true;
+        _state=0;
 
         _hitBox=new Rect();
         _hitBox.top=_boundingRect.top;
@@ -37,8 +40,17 @@ public class Player extends MovingObject {
         _hitBox.left=_boundingRect.left+64;
         _hitBox.right=_boundingRect.right-64;
 
-        _animation = new Animation(SpriteCollection.getPlayerSprites(), 0.8f);
-        _animationManager=new AnimationManager(new Animation[]{_animation});
+        _runningAnimation = new Animation(SpriteCollection.getPlayerSprites(), 0.8f);
+        Bitmap[] jumping=new Bitmap[1];
+        jumping[0]=SpriteCollection.getPlayerSprites()[0];
+        _jumpingAnimation = new Animation(jumping, 0.8f);
+        Bitmap[] falling=new Bitmap[3];
+
+        falling[0]=SpriteCollection.getPlayerSprites()[4];
+        falling[1]=SpriteCollection.getPlayerSprites()[5];
+        falling[2]=SpriteCollection.getPlayerSprites()[6];
+        _fallingAnimation=new Animation(falling,0.3f);
+        _animationManager=new AnimationManager(new Animation[]{_runningAnimation,_fallingAnimation});
     }
 
     public Rect getHitBox(){
@@ -108,8 +120,9 @@ public class Player extends MovingObject {
 
             _yVelocity = 0.0f;
             _onGround = true;
+            _state=0;
         }
-        _animationManager.playAnimation(0);
+        _animationManager.playAnimation(_state);
         _animationManager.update();
     }
 
@@ -117,12 +130,14 @@ public class Player extends MovingObject {
         if (_onGround) {
             _yVelocity = _jumpSpeed;
             _onGround = false;
+            _state=1;
         }
     }
 
     public void endJump() {
         if (_yVelocity < -10.0f) {
             _yVelocity = -10.0f;
+            _state=1;
         }
     }
 }
